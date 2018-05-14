@@ -1,5 +1,5 @@
 # GiraUno
-GiraUno is a fork of Bitcoin. For any information or instruction not listed here, please refer to the [Official Bitcoin Documentation](https://github.com/bitcoin/bitcoin/tree/master/doc).
+GiraUno is a fork of bitcoin-core code. For any information or instruction not listed here, please refer to the [Official Bitcoin Documentation](https://github.com/bitcoin/bitcoin/tree/master/doc).
 
 ### Deploy
 
