@@ -1,0 +1,11 @@
+[Protocol]
+exec=giracoin-qt '%u'
+protocol=giracoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

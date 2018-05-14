@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# This is a thin wrapper around giracoin-cli that strips the Windows-style EOLs
+# from the output if present. It is necessary when using giracoin-cli.exe on
+# Linux since shells will interpret the line-endings as part of the result.
+
+CURDIR=$(cd $(dirname "$0"); pwd)
+# Get BUILDDIR and REAL_GIRACOIND
+
+# Grab the value of $REAL_GIRACOINCLI which may be giracoin-cli.exe.
+. "${CURDIR}/tests-config.sh"
+
+"${REAL_GIRACOINCLI}" "$@" | sed 's/\r//'

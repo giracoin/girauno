@@ -1,0 +1,81 @@
+policy_module(giracoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type giracoin_t;
+type giracoin_exec_t;
+init_daemon_domain(giracoin_t, giracoin_exec_t)
+
+permissive giracoin_t;
+
+type giracoin_initrc_exec_t;
+init_script_file(giracoin_initrc_exec_t)
+
+type giracoin_conf_t;
+files_type(giracoin_conf_t)
+
+type giracoin_var_lib_t;
+files_type(giracoin_var_lib_t)
+
+type giracoin_var_run_t;
+files_type(giracoin_var_run_t)
+
+type giracoin_port_t;
+corenet_port(giracoin_port_t)
+
+########################################
+#
+# giracoin local policy
+#
+allow giracoin_t self:process { fork };
+
+allow giracoin_t self:fifo_file rw_fifo_file_perms;
+allow giracoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(giracoin_t, giracoin_conf_t, giracoin_conf_t)
+manage_files_pattern(giracoin_t, giracoin_conf_t, giracoin_conf_t)
+
+manage_dirs_pattern(giracoin_t, giracoin_var_lib_t, giracoin_var_lib_t)
+manage_files_pattern(giracoin_t, giracoin_var_lib_t, giracoin_var_lib_t)
+files_var_lib_filetrans(giracoin_t, giracoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(giracoin_t, giracoin_var_run_t, giracoin_var_run_t)
+manage_files_pattern(giracoin_t, giracoin_var_run_t, giracoin_var_run_t)
+
+sysnet_dns_name_resolve(giracoin_t)
+corenet_all_recvfrom_unlabeled(giracoin_t)
+
+allow giracoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(giracoin_t)
+corenet_tcp_sendrecv_generic_node(giracoin_t)
+corenet_tcp_sendrecv_all_ports(giracoin_t)
+corenet_tcp_bind_generic_node(giracoin_t)
+
+gen_require(`
+    type giracoin_port_t;
+')
+allow giracoin_t giracoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type giracoin_port_t;
+')
+allow giracoin_t giracoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(giracoin_t)
+
+files_read_etc_files(giracoin_t)
+
+miscfiles_read_localization(giracoin_t)
+
+sysnet_dns_name_resolve(giracoin_t)
+
+allow giracoin_t giracoin_exec_t:file execute_no_trans;
+allow giracoin_t self:process setsched;
+corecmd_exec_ls(giracoin_t)
+corenet_tcp_connect_http_port(giracoin_t)
+dev_read_urand(giracoin_t)
+fs_getattr_xattr_fs(giracoin_t)
+kernel_read_system_state(giracoin_t)

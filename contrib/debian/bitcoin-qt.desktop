@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Giracoin
+Comment=Giracoin P2P Cryptocurrency
+Comment[fr]=Giracoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Giracoin, eşten eşe kriptografik sanal para birimi
+Exec=giracoin-qt %u
+Terminal=false
+Type=Application
+Icon=giracoin128
+MimeType=x-scheme-handler/giracoin;
+Categories=Office;Finance;

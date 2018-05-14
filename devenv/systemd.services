@@ -1,0 +1,17 @@
+###############
+## pool.service
+##############
+[Unit]
+Description=Giracoin Mining Pool
+After=network.target
+
+[Service]
+ExecStart=/home/alberto/mining-pool/init.js
+Restart=always
+User=alberto
+Group=alberto
+Environment=NODE_ENV=production
+WorkingDirectory=/home/alberto/mining-pool/
+
+[Install]
+WantedBy=multi-user.target

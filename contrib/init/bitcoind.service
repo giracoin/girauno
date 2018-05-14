@@ -1,0 +1,22 @@
+[Unit]
+Description=Giracoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=giracoin
+Group=giracoin
+
+Type=forking
+PIDFile=/var/lib/giracoind/giracoind.pid
+ExecStart=/usr/bin/giracoind -daemon -pid=/var/lib/giracoind/giracoind.pid \
+-conf=/etc/giracoin/giracoin.conf -datadir=/var/lib/giracoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

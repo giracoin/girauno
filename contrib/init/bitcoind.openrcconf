@@ -1,0 +1,33 @@
+# /etc/conf.d/giracoind: config file for /etc/init.d/giracoind
+
+# Config file location
+#GIRACOIND_CONFIGFILE="/etc/giracoin/giracoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $GIRACOIND_USER)
+#GIRACOIND_PIDDIR="/var/run/giracoind"
+
+# What filename to give the pidfile
+#GIRACOIND_PIDFILE="${GIRACOIND_PIDDIR}/giracoind.pid"
+
+# Where to write giracoind data (be mindful that the blockchain is large)
+#GIRACOIND_DATADIR="/var/lib/giracoind"
+
+# User and group to own giracoind process
+#GIRACOIND_USER="giracoin"
+#GIRACOIND_GROUP="giracoin"
+
+# Path to giracoind executable
+#GIRACOIND_BIN="/usr/bin/giracoind"
+
+# Nice value to run giracoind under
+#GIRACOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+GIRACOIND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for giracoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+GIRACOIND_SIGTERM_TIMEOUT=60

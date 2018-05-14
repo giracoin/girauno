@@ -1,0 +1,6 @@
+usr/local/bin/giracoin-qt usr/bin
+share/pixmaps/giracoin32.xpm usr/share/pixmaps
+share/pixmaps/giracoin16.xpm usr/share/pixmaps
+share/pixmaps/giracoin128.png usr/share/pixmaps
+debian/giracoin-qt.desktop usr/share/applications
+debian/giracoin-qt.protocol usr/share/kde4/services/
